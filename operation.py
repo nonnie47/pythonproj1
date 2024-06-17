@@ -1,3 +1,5 @@
+from connections import engine
+from sqlalchemy.orm import sessionmaker
 from models import SessionLocal, Student, StudentGPA, StudentHousing
 
 def get_students():

@@ -1,3 +1,4 @@
+from connections import engine
 from flask import Flask, jsonify, request
 from operation import add_student, get_students, add_student_gpa, get_student_gpa, add_student_housing, get_student_housing
 
