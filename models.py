@@ -14,7 +14,7 @@ class Student(Base):
     graduates = Column(Integer)
 
     gpa = relationship("StudentGPA", back_populates="student", uselist=False)
-    housing = relationship("StudentHousing", back_populates="student")
+    hall = relationship("StudentHousing", back_populates="student")
 
 
 class StudentGPA(Base):
@@ -30,9 +30,9 @@ class StudentHousing(Base):
     __tablename__ = "studenthousing"
 
     name = Column(String, ForeignKey("students.name"), primary_key=True)
-    housing = Column(String)
+    hall = Column(String)
 
-    student = relationship("Student", back_populates="housing")
+    student = relationship("Student", back_populates="hall")
 
 
 Base.metadata.create_all(bind=engine)
