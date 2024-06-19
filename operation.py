@@ -29,6 +29,7 @@ class StudentOperations:
             logger.error(f"Error getting students: {e}")
             return []
 
+
     @staticmethod
     def add_student(name, major, graduates):
         try:
@@ -60,6 +61,31 @@ class StudentOperations:
             session.add(new_gpa)
             session.commit()
             session.close()
+        except Exception as e:
+            logger.error(f"Error adding student GPA: {e}")
 
+    @staticmethod
+    def get_student_housing():
+        try:
+            session = SessionLocal()
+            student_housing = session.query(StudentHousing).all()
+            housing_list = [{"name": housing.name, "housing": housing.hall} for housing in student_housing]
+            session.close()
+            return housing_list
+        except Exception as e:
+            logger.error(f"Error getting student housing: {e}")
+            return []
+
+    @staticmethod
+    def add_student_housing(name, hall):
+        try:
+            session = SessionLocal()
+            new_housing = StudentHousing(name=name, hall=hall)
+            session.add(new_housing)
+            session.commit()
+            session.close()
+        except Exception as e:
+            logger.error(f"Error adding student housing: {e}")
+   
 
 
